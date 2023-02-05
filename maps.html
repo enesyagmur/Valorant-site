@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Valorant haritaları</title>
+    <style>
+        img{
+ width: 400px;
+ height: 300px;
+ background-size: cover;
+}
+    </style>
+ 
+</head>
+<body>
+       <header>
+
+       
+        <a href="hero.html">Karakterler</a>
+        <a href="weapons.html">Silahlar</a>
+        <a href="maps.html">Haritalar</a>
+ 
+ 
+
+       </header>
+      <main class="main">
+         
+       
+       
+      </main>
+
+    <script>
+    
+    let main = document.querySelector("main")
+
+    function get_maps(url){
+        return new Promise((resolve,reject)=>{
+
+            fetch(url)
+            .then(info=>info.json())
+            .then(info_json=>resolve(info_json))
+            .catch(hata=>reject(hata))
+        })
+    }
+
+    
+   get_maps("https://valorant-api.com/v1/maps")
+   .then(bilgi=>{
+      
+            bilgi.data.forEach(element => {
+                main.innerHTML+=`
+         <div>
+            <img src=${element.splash}>
+            <h1>${element.displayName}</h1>
+            <p>${element.coordinates}</p>
+
+            </div>
+         
+         `
+            });
+        
+   })
+
+
+    </script>
+</body>
+</html>

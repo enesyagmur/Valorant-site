@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Valorant silahları</title>
+    <style>
+        img{
+ width: 400px;
+ height: 150px;
+ background-size: cover;
+}
+    </style>
+ 
+</head>
+<body>
+       <header>
+
+       
+        <a href="hero.html">Karakterler</a>
+        <a href="weapons.html">Silahlar</a>
+        <a href="maps.html">Haritalar</a>
+ 
+ 
+
+       </header>
+      <main class="main">
+         
+       
+       
+      </main>
+
+    <script>
+
+
+
+ function get_weapon (url){
+
+    let main = document.querySelector("main");
+      
+    fetch(url)
+    .then(response=>response.json())
+    .then(info=>{
+        
+        info.data.forEach(element => {
+           main.innerHTML+=`<div>
+                <img src=${element.displayIcon}>
+                <h1>${element.displayName}</h1>
+                <p>${element.shopData.category}</p>
+                <p>${element.shopData.cost} $</p>
+
+    
+                
+                </div>`
+        })
+    })
+ 
+}
+
+get_weapon("https://valorant-api.com/v1/weapons")
+
+    </script>
+</body>
+</html>

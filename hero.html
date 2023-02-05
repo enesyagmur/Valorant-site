@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Valorant karakterleri</title>
+   <style>
+    img{
+ width: 200px;
+ height: 200px;
+ background-size: cover;
+}
+   </style>
+</head>
+<body>
+       <header>
+
+       <a href="hero.html">Karakterler</a>
+       <a href="weapons.html">Silahlar</a>
+       <a href="maps.html">Haritalar</a>
+
+
+       </header>
+      <main>
+         
+       
+       
+      </main>
+
+    <script>
+
+
+
+async function get_hero (url){
+      
+    const connect = await fetch(url)
+    const response = await connect.json();
+
+    
+    response.data.forEach(element => {
+        
+    
+        document.querySelector("main").innerHTML+=`<div>
+        
+        <img src=${element.displayIcon}>
+        <h1>${element.displayName}</h1>
+        <p>${element.description}</p>
+        </div>` 
+    })
+ 
+}
+
+get_hero("https://valorant-api.com/v1/agents")
+
+    </script>
+</body>
+</html>
